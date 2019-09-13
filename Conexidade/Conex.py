@@ -7,7 +7,6 @@ import numpy as np
 
 class Conex():
     def __init__(self):
-
         self.initvariables() # inicializacao de variaveis
 
 
