@@ -73,21 +73,3 @@ class Conex():
                 if(vertices[i]==1):
                     neighboors_vertices.add(self.V_temp[i])
         return neighboors_vertices
-    
-if __name__ == '__main__':
-
-    G =[[0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-                 [1, 0, 1, 1, 0, 0, 0, 0, 0, 0],
-                 [1, 1, 0, 1, 0, 0, 0, 0, 0, 0],
-                 [0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
-                ]
-
-    Conex = Conex(G)
-    print("Componentes Conexas")
-    print(Conex.calcConex())
