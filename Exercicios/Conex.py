@@ -2,7 +2,6 @@
 
 import random
 from random import choice
-
 import numpy as np
 
 
@@ -29,7 +28,6 @@ class Conex():
 
         #chooses a vertice of V
         v = choice(list(self.V))
-        print (v)
 
         #add vertice v to dict R, with key 'v'
         self.R[v].add(v)
@@ -47,13 +45,7 @@ class Conex():
             self.R[v] = self.R[v] | Y
 
             #add R(V) to array conexComponent
-            #Garante que apenas o maximal será adicionado            
-            for set_vertices in self.conexComponet:                
-                if (len(set_vertices)<len(list(self.R[v]))):                
-                    if(all([x in list(self.R[v]) for x in set_vertices ])):
-                        self.conexComponet.remove(set_vertices)                   
             self.conexComponet.append(list(self.R[v]))
-            
 
         #set as R(v)
         Y = self.R[v]
@@ -81,22 +73,3 @@ class Conex():
                 if(vertices[i]==1):
                     neighboors_vertices.add(self.V_temp[i])
         return neighboors_vertices
-    
-if __name__ == '__main__':
-
-    G =[[0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-                 [1, 0, 1, 1, 0, 0, 0, 0, 0, 0],
-                 [1, 1, 0, 1, 0, 0, 0, 0, 0, 0],
-                 [0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-                 [0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 1, 0, 1, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
-                ]
-
-    Conex = Conex(G)
-    print("Componentes Conexas")
-    print(Conex.calcConex())
-    
