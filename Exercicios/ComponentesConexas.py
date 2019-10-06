@@ -25,7 +25,7 @@ for grafo in range(0,nTestes):
 
 
 c = Conex(grafos[0])
-c.calcConex()
+print(c.calcConex())
 
 
 

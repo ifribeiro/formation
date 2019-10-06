@@ -2,7 +2,7 @@
 
 import random
 from random import choice
-
+import string
 import numpy as np
 
 
@@ -12,8 +12,9 @@ class Conex():
 
 
     def initvariables(self, G):
-        self.V_temp = ['a','b','c','d','e','f','g','h','i','j']
-        self.V = set(['a','b','c','d','e','f','g','h','i','j'])
+        print (len(G))
+        self.V_temp = list(string.ascii_lowercase)[:len(G)]
+        self.V = set(self.V_temp)
         self.R = {}
         #    G =  a  b  c  d  e  f  g  h  i  j
         self.G = G
