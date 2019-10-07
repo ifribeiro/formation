@@ -12,7 +12,6 @@ class Conex():
 
 
     def initvariables(self, G):
-
         self.V_temp = list(string.ascii_lowercase)[:len(G)]
         self.V = set(self.V_temp)
         self.R = {}
@@ -30,15 +29,16 @@ class Conex():
 
         #chooses a vertice of V
         v = choice(list(self.V))
+        
 
         #add vertice v to dict R, with key 'v'
         self.R[v].add(v)
-
+        
         #initialize Y as a set
         Y = set()
 
         #while there's a neighboor vertice
-        while(len(self.neighboors(self.R[v]) - self.R[v])!=0):
+        while(len(self.neighboors(self.R[v]) - self.R[v])!=0):           
             
             #Calculate the neighboors of R(v) - R(v)
             Y = self.neighboors(self.R[v]) - self.R[v]
@@ -47,14 +47,20 @@ class Conex():
             self.R[v] = self.R[v] | Y
 
             #add R(V) to array conexComponent
-            self.conexComponet.append(list(self.R[v]))
-
+            #Garante que apenas o maximal será adicionado            
+            for set_vertices in self.conexComponet:                
+                if (len(set_vertices)<len(list(self.R[v]))):                
+                    if(all([x in list(self.R[v]) for x in set_vertices ])):
+                        self.conexComponet.remove(set_vertices)                   
+            
+            
+        self.conexComponet.append(list(self.R[v]))
         #set as R(v)
         Y = self.R[v]
+        
 
         #set V as the difference between the sets V and Y
         self.V = self.V - Y        
-        
         #if there's vertices left in V
         if (len(self.V)!=0):
             self.calcConex()
@@ -69,9 +75,11 @@ class Conex():
     def neighboors(self,V):
         neighboors_vertices = set() # initializes vertices' array
         for i in V:            
-            pos = self.V_temp.index(i) # position of vertice in array        
+            pos = self.V_temp.index(i) # position of vertice in array
+            neighboors_vertices.add(self.V_temp[pos]) #adiciona o próprio vertice na lista de vizinhos
             vertices = self.G[pos] # adjacency of vertice v            
             for i in range(0,len(vertices)): 
                 if(vertices[i]==1):
                     neighboors_vertices.add(self.V_temp[i])
         return neighboors_vertices
+    
