@@ -1,20 +1,9 @@
-#!/usr/bin/env python3
-
 import numpy as np
 
-
 class Dijkstra():
-    def __init__(self):
-        self.V = [1,2,3,4,5,6]
-        self.custos = np.array([            
-            [0,10,5,np.Infinity,np.Infinity,np.Infinity],
-            [10,0,4,1,4,np.Infinity],
-            [5,4,0,np.Infinity,6,np.Infinity],
-            [np.Infinity,1,np.Infinity,0, 2,3],
-            [np.Infinity,4,6,2,0,1],
-            [np.Infinity,np.Infinity,np.Infinity,3,1,0]
-            ])
-             
+    def __init__(self, G):
+        self.G = G    
+    """
     def dijkstra(self, v):
         Vini = self.v(v)        
         d = np.zeros((6,6))
@@ -40,13 +29,13 @@ class Dijkstra():
                 if (custo < d[Vini,self.v(i)]):                    
                     d[Vini,self.v(i)] = custo
                     anterior[self.v(i)] = k        
-        print ("custos: ", d[Vini])
+        print ("custos: ", d[Vini])"""
 
          
     """
     " V = set of Vertices
     " Returns = set of Neighboors of v
-    """
+    
     def neighboors(self,V):
         neighboors_vertices = set() # initializes vertices' array        
         for i in V:            
@@ -74,18 +63,34 @@ class Dijkstra():
                     menor = temp
         return closest
     
-    def v(self, v):
-        """
-        Retorna o índice do vértice
+    def v(self, v):        
+        return self.V.index(v)"""
 
-        """
-        return self.V.index(v)
+class Routes():
+    def __init__(self):
+        self.grafos = []
     
-if __name__ == '__main__':
-    Dijkstra = Dijkstra()
+    def createRoutes(self):
+        
+        while(True):
+            NMCK = input()
+            if (NMCK != "0 0 0 0"):
+                N,M,C,K = NMCK.split(" ")
+                matrix = np.inf*np.ones((int(N),int(N)))
+                for i in range(0, int(M)):
+                    U,V,P = input().split(" ")
+                    matrix[int(U)][int(V)] = P
+                    matrix[int(V)][int(U)] = P
+                    print (matrix)                         
+                
+            else:
+                break
 
-    #print (Dijkstra.neighboors([4]))
-    Dijkstra.dijkstra(2)
     
+if __name__ == "__main__":
+    Routes = Routes()
+    Routes.createRoutes()
+
         
-        
+
+

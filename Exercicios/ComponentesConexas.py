@@ -115,8 +115,7 @@ class ConnectedComponents():
 if __name__ == "__main__":
     CC = ConnectedComponents()
     nTestes = int(input())
-    CC.createMatrices(nTestes)
-    print ("\n\n")
+    CC.createMatrices(nTestes)    
     CC.calcConnectedComponents()
 
 
