@@ -1,3 +1,4 @@
+import numpy as np
 class Dijkstra():
     def __init__(self, custos, C, K):
         self.init_variable(custos,C,K)        
@@ -44,10 +45,11 @@ class Dijkstra():
             print ("closest ",k)
             vAtual = k            
             fechado = fechado.union(set({k}))
-            aberto  = aberto.difference(set({k}))                 
-            for i in (aberto):                                            
+            aberto  = aberto.difference(set({k}))
+            print ("aberto", aberto)     
+            for i in (aberto.intersection(self.neighboors([k]))):                                            
                 custo = min(d[Vini][i], d[Vini][k]+self.custos[k][i])
-                print ("k,  i",k, i)
+                print ("i", i)
                 print ("min ", d[Vini][i], d[Vini][k]+self.custos[k][i])
                 print ("custo:",custo)               
                 if(vAtual in self.rota):
@@ -57,7 +59,8 @@ class Dijkstra():
                 if (custo < d[Vini][i]):
                     d[Vini][i] = custo                    
                     anterior[i] = k
-                print (d[Vini])
+                
+        #print (d[Vini])
         return d[Vini]      
                
     def neighboors(self,V):

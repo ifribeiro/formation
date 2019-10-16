@@ -1,7 +1,5 @@
-import numpy as np
 import random
 from random import choice
-import numpy as np
 import string
 
 class Conex():
@@ -88,7 +86,7 @@ class ConnectedComponents():
     def createMatrices(self, nTestes):
         for grafo in range(0,nTestes):
             nVert_Ares = input().split(" ")    
-            matrix = np.zeros((int(nVert_Ares[0]), int(nVert_Ares[0])))
+            matrix = self.zeros(int(nVert_Ares[0]))
             self.grafos.append(matrix)
             for j in range(0, int(nVert_Ares[1])):
                 conexao = input().split(" ")
@@ -100,6 +98,16 @@ class ConnectedComponents():
                 else:
                     self.grafos[grafo][idx1][idx2] = 0
 
+    def zeros(self, nColunas):
+        M = []
+        row = []
+        for i in range(0,nColunas):
+            row = []
+            for j in range(0,nColunas):
+                row.append(0)
+            M.append(row)
+        return M
+
     def calcConnectedComponents(self):
         for i in range(0,len(self.grafos)):
             print ("Case #%s:"%(i+1))
@@ -110,21 +118,10 @@ class ConnectedComponents():
             for component in listConex:
                 component = sorted(component)
                 print (",".join(component)+",")
-            print ("%s connected components\n\n"%(len(listConex)))
+            print ("%s connected components\n"%(len(listConex)))
     
 if __name__ == "__main__":
     CC = ConnectedComponents()
     nTestes = int(input())
     CC.createMatrices(nTestes)    
     CC.calcConnectedComponents()
-
-
-
-
-
-
-
-
-
-
-
